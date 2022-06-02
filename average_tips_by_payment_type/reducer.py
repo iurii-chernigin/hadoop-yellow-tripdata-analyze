@@ -6,18 +6,14 @@
 from multiprocessing.sharedctypes import Value
 import sys
 
+
 def perform_reduce():
     
-    file_in = open('./output/map-result.txt')
-    data = file_in.readlines()
-    data.sort()
-
     previous_date = None
     previous_payment_type = None
     current_tips_sum = 0
 
-    for line in data:
-
+    for line in sys.stdin:
         line = line.strip()
         values = line.split(';')
 

@@ -15,19 +15,14 @@ PAYMENT_TYPE_D = {
     6: 'Voided trip'
 }
 
+
 def perform_map():
 
-    file_in = open('./samples/yellow_tripdata_2020-04.csv', 'r')
-    file_out = open('./output/map-result.txt', 'w')
-    data = file_in.readlines()
-    data_out = []
-
-    for line in data:
+    for line in sys.stdint:
         line = line.strip()
         values = line.split(',')
 
         if len(values) == 18 and 'VendorID' not in values:
-            
             try:
                 tpep_pickup_datetime = datetime.strptime(values[1], '%Y-%m-%d %H:%M:%S')
                 tip_amount = float(values[13])
@@ -40,12 +35,7 @@ def perform_map():
             except ValueError:
                 continue 
 
-            result = "{};{};{}".format(tpep_pickup_date, payment_type, tip_amount)
-            print(result)
-            data_out.append(result + "\n")
-
-    data_out.sort()
-    file_out.writelines(data_out)
+            print("{};{};{}".format(tpep_pickup_date, payment_type, tip_amount))
 
 
 if __name__ == '__main__':
