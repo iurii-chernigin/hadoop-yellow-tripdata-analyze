@@ -17,8 +17,10 @@ PAYMENT_TYPE_D = {
 
 def perform_map():
 
-    file = open('./samples/yellow_tripdata_2020-05.csv', 'r')
-    data = file.readlines()
+    file_in = open('./samples/yellow_tripdata_2020-04.csv', 'r')
+    file_out = open('./output/map-result.txt', 'w')
+    data = file_in.readlines()
+    data_out = []
 
     for line in data:
         line = line.strip()
@@ -27,19 +29,23 @@ def perform_map():
         if len(values) == 18 and 'VendorID' not in values:
             
             try:
-                #TODO: Add check for a correct year
-                tpep_pickup_date = datetime.strftime(datetime.strptime(values[1], '%Y-%m-%d %H:%M:%S'), '%Y-%m')
+                tpep_pickup_datetime = datetime.strptime(values[1], '%Y-%m-%d %H:%M:%S')
                 tip_amount = float(values[13])
                 payment_type_id = int(values[9])
-                if payment_type_id in PAYMENT_TYPE_D:
+                if tpep_pickup_datetime.year == 2020 and tip_amount >= 0.0 and payment_type_id in PAYMENT_TYPE_D:
+                    tpep_pickup_date = datetime.strftime(tpep_pickup_datetime, '%Y-%m')
                     payment_type = PAYMENT_TYPE_D[payment_type_id] 
                 else:
                     continue
             except ValueError:
                 continue 
 
-            
-            print("{}.{}\t{}".format(tpep_pickup_date, payment_type, tip_amount))
+            result = "{};{};{}".format(tpep_pickup_date, payment_type, tip_amount)
+            print(result)
+            data_out.append(result + "\n")
+
+    data_out.sort()
+    file_out.writelines(data_out)
 
 
 if __name__ == '__main__':
