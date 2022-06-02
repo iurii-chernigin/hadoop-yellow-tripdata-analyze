@@ -28,12 +28,12 @@ def perform_reduce():
             current_tips_sum += current_tips
         else:
             if previous_date:
-                print("{};{};{}".format(previous_payment_type, previous_date, round(current_tips_sum, 2)))
+                print("{};{};{}".format(previous_date, previous_payment_type, round(current_tips_sum, 2)))
             current_tips_sum = current_tips
             previous_date = current_date
             previous_payment_type = current_payment_type
     
-    print("{};{};{}".format(previous_payment_type, previous_date, round(current_tips_sum, 2)))
+    print("{};{};{}".format(previous_date, previous_payment_type, round(current_tips_sum, 2)))
 
 if __name__ == '__main__':
     perform_reduce()

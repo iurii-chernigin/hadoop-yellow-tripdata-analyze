@@ -1,2 +1,2 @@
 copy_to_masternode:
-	scp -r ../hadoop-yellow-tripdata-analyze <Master-Node-IP>:/tmp/
+	scp -r ./mapred_tips_analyze root@<MasterNode IP Address>:/tmp/

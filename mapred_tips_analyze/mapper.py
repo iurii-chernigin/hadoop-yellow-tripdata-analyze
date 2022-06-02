@@ -18,7 +18,7 @@ PAYMENT_TYPE_D = {
 
 def perform_map():
 
-    for line in sys.stdint:
+    for line in sys.stdin:
         line = line.strip()
         values = line.split(',')
 
