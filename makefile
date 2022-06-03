@@ -1,2 +1,2 @@
-say_hello:
-	@echo "Hello"
+copy_to_masternode:
+	scp -r ./mapred_tips_analyze root@<MasterNode IP Address>:/tmp/
