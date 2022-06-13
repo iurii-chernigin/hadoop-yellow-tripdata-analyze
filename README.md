@@ -20,3 +20,27 @@ tolls_amount               0                       0
 improvement_surcharge      0.3                     0.3
 total_amount               6.8                     20.16
 congestion_surcharge       0                       2.5
+
+## Load Data From AWS to Hadoop FS via "hadoop distcp"
+```
+hadoop distcp \
+-Dfs.s3a.endpoint=s3.amazonaws.com \
+-Dfs.s3a.aws.credentials.provider=org.apache.hadoop.fs.s3a.AnonymousAWSCredentialsProvider \
+s3a://nyc-tlc/csv_backup/yellow_tripdata_2020-*.csv /user/root/yellow_tripdata/2020/
+```
+
+## Load Data From AWS to Yandex S3 via "hadoop distcp"
+```
+hadoop distcp \
+-Dfs.s3a.bucket.nyc-tlc.endpoint=s3.amazonaws.com \
+-Dfs.s3a.bucket.yellow-taxi-data.endpoint=https://storage.yandexcloud.net \
+-Dfs.s3a.aws.credentials.provider=org.apache.hadoop.fs.s3a.AnonymousAWSCredentialsProvider \
+s3a://nyc-tlc/csv_backup/yellow_tripdata_2020-*.csv s3a://yellow-taxi-data/raw/2020/
+```
+## LS Files in the S3 bucket 
+```
+hadoop fs \
+-Dfs.s3a.endpoint=https://storage.yandexcloud.net \
+-Dfs.s3a.aws.credentials.provider=org.apache.hadoop.fs.s3a.AnonymousAWSCredentialsProvider \
+-ls s3a://yellow-taxi-data/raw/2020/
+```
