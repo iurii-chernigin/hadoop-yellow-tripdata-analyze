@@ -55,10 +55,6 @@ select
 from tripdata_stage stg
 	inner join tripdata_dict_payments payments
 		on stg.payment_type = payments.id
-	inner join tripdata_dict_rates rates
-		on stg.rate_code_id = rates.id
-	inner join tripdata_dict_vendors vendors
-		on stg.vendor_id = vendors.id
 where 
     year(tpep_pickup_datetime) = 2020
     and tip_amount >= 0.0
