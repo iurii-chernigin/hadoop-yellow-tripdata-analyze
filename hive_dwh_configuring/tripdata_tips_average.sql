@@ -18,5 +18,4 @@ select
     payment_type,
     cast(pickup_date as date) as pickup_date
 from tripdata_tips
-group by payment_type, pickup_date
-order by pickup_date, payment_type desc;
+group by payment_type, pickup_date;

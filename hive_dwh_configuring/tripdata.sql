@@ -28,6 +28,8 @@ partitioned by(pickup_date string)
 stored as parquet;
 
 set hive.exec.dynamic.partition.mode=nonstrict;
+set hive.exec.max.dynamic.partitions.pernode=366;
+set hive.exec.max.dynamic.partitions=366;
 
 insert into tripdata partition(pickup_date)
 select  
