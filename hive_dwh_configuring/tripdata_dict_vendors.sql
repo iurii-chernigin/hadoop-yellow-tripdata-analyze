@@ -1,6 +1,6 @@
 use yellow_taxi;
 
-create table is not exists tripdata_dict_vendors (
+create table if not exists tripdata_dict_vendors (
     id tinyint,
     name string
 )
