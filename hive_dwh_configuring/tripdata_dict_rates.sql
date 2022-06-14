@@ -1,13 +1,13 @@
 use yellow_taxi;
 
+drop table if exists tripdata_dict_rates;
+
 create table if not exists tripdata_dict_rates (
     id tinyint,
     name string
 )
 comment 'Dictionary for rate codes enriching'
 stored as parquet;
-
-truncate table tripdata_dict_rates;
 
 insert into tripdata_dict_rates (id, name)
 select 1, 'Standard rate'

@@ -1,6 +1,8 @@
 
 use yellow_taxi;
 
+drop table if exists tripdata_stage;
+
 create external table if not exists tripdata_stage (
     vendor_id               tinyint,
     tpep_pickup_datetime    timestamp,

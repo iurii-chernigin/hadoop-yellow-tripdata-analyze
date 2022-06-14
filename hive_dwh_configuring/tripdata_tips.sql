@@ -1,6 +1,7 @@
 use yellow_taxi;
 
 drop view if exists tripdata_tips;
+
 create view if not exists tripdata_tips as
 select  
 	d_pay.name as payment_type,

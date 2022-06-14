@@ -1,6 +1,8 @@
 
 use yellow_taxi;
 
+drop table if exists tripdata;
+
 create table if not exists tripdata (
     vendor_id               tinyint,
     tpep_pickup_datetime    timestamp,
@@ -26,7 +28,6 @@ partitioned by(pickup_date string)
 stored as parquet;
 
 set hive.exec.dynamic.partition.mode=nonstrict;
-truncate table tripdata;
 
 insert into tripdata partition(pickup_date)
 select  

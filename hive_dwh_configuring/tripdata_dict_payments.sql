@@ -1,13 +1,13 @@
 use yellow_taxi;
 
+drop table if exists tripdata_dict_payments;
+
 create table if not exists tripdata_dict_payments (
     id tinyint,
     name string
 )
 comment 'Dictionary for payment information enriching'
 stored as parquet;
-
-truncate table tripdata_dict_payments;
 
 insert into tripdata_dict_payments (id, name)
 select 1, 'Credit card'
